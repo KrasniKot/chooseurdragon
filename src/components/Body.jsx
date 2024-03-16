@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Table } from './Table';
 
 // Defining a dragon
@@ -22,15 +22,56 @@ class Drgn {
 // Creating the HTYD dragons
 const drgns = [
     new Drgn('Armorwing','Mistery','Caves',true,12,7,50,10,4,0,11,1),
-    new Drgn('Bewilderbeast','Tidal','Oceans / Ice Nests',true,50,'6 on land / 50 underwater',38,60,8,0,48,2),
-    new Drgn('Boneknapper','Mistery','Dragon graveyards',true,7,10,'2 / 18 with bones',9,6,0,4,8)
+    new Drgn('Bewilderbeast','Tidal','Oceans / Ice Nests',true,50,18,38,60,8,0,48,2),
+    new Drgn('Boneknapper','Mistery','Dragon graveyards',true,7,10,18,9,6,0,4,8)
 ]
 
 export const Body = () => {
+    const [op, setOp] = useState('<');
+    const [val, setVal] = useState(0);
+    const [filteredDrgns, setFilteredDrgns] = useState(drgns);
+
+    const opChange = (e) => {
+        setOp(e.target.value);
+        filterDrgns(e.target.value, val);
+    }
+
+    const valChange = (e) => {
+        setVal(e.target.value);
+        filterDrgns(op, e.target.value);
+    }
+
+    const filterDrgns = (operator, value) => {
+        const filtered = drgns.filter(drgn => {
+            switch(operator) {
+                case '<':
+                    return drgn.speed < value;
+                case '=':
+                    return drgn.speed === +value;
+                case '>':
+                    return drgn.speed > value;
+                default:
+                    return true;
+            }
+        });
+
+        setFilteredDrgns(filtered);
+    }
+
     return ( 
         <div>
-            <Table drgns={drgns} />
+            <div className='SFilter'>
+                <label htmlFor='speedOperator'> Speed </label>
+                <select id='speedOperator' value={op} onChange={opChange}>
+                    <option value='<'> &#60; </option>
+                    <option value='='> = </option>
+                    <option value='>'> &#62; </option>
+                </select>
+                <input type='number' value={val} onChange={valChange} />
+            </div>
+            <Table drgns={filteredDrgns} />
         </div>
     );
 }
+
 
