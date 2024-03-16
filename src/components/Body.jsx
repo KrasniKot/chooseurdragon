@@ -22,7 +22,8 @@ class Drgn {
 // Creating the HTYD dragons
 const drgns = [
     new Drgn('Armorwing','Mistery','Caves',true,12,7,50,10,4,0,11,1),
-    new Drgn('Bewilderbeast','Tidal','Oceans / Ice Nests',true,50,'6 on land / 50 underwater',38,60,8,0,48,2)
+    new Drgn('Bewilderbeast','Tidal','Oceans / Ice Nests',true,50,'6 on land / 50 underwater',38,60,8,0,48,2),
+    new Drgn('Boneknapper','Mistery','Dragon graveyards',true,7,10,'2 / 18 with bones',9,6,0,4,8)
 ]
 
 export const Body = () => {
