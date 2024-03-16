@@ -27,22 +27,24 @@ const drgns = [
 ]
 
 export const Body = () => {
-    const [op, setOp] = useState('<');
-    const [val, setVal] = useState(0);
     const [filteredDrgns, setFilteredDrgns] = useState(drgns);
 
-    const opChange = (e) => {
-        setOp(e.target.value);
-        filterDrgns(e.target.value, val);
+    // Speed Filters
+    const [sop, setsOp] = useState('>');
+    const [sval, setsVal] = useState(0);
+
+    const sopChange = (e) => {
+        setsOp(e.target.value);
+        filtersDrgns(e.target.value, sval);
     }
 
-    const valChange = (e) => {
-        setVal(e.target.value);
-        filterDrgns(op, e.target.value);
+    const svalChange = (e) => {
+        setsVal(e.target.value);
+        filtersDrgns(sop, e.target.value);
     }
 
-    const filterDrgns = (operator, value) => {
-        const filtered = drgns.filter(drgn => {
+    const filtersDrgns = (operator, value) => {
+        const filtered = filteredDrgns.filter(drgn => {
             switch(operator) {
                 case '<':
                     return drgn.speed < value;
@@ -58,18 +60,63 @@ export const Body = () => {
         setFilteredDrgns(filtered);
     }
 
+    // Attack Filters
+    const [aop, setaOp] = useState('>')
+    const [aval, setaVal] = useState('0')
+
+    const aopChange = (e) => {
+        setaOp(e.target.value);
+        filteraDrgns(e.target.value, aval);
+
+    }
+
+    const avalChange = (e) => {
+        setaVal(e.target.value);
+        filteraDrgns(aop, e.target.value);
+    }
+
+    const filteraDrgns = (op, val) => {
+        const filtered = filteredDrgns.filter(drgn => {
+            switch(op) {
+                case '<':
+                    return drgn.atk < val;
+                case '=':
+                    return drgn.atk === +val;
+                case '>':
+                    return drgn.atk > val;
+                default:
+                    return true;
+            }
+        });
+
+        setFilteredDrgns(filtered);
+    }
+
     return ( 
         <div>
+
             <div className='SFilter'>
                 <label htmlFor='speedOperator'> Speed </label>
-                <select id='speedOperator' value={op} onChange={opChange}>
+                <select id='speedOperator' value={sop} onChange={sopChange}>
                     <option value='<'> &#60; </option>
                     <option value='='> = </option>
                     <option value='>'> &#62; </option>
                 </select>
-                <input type='number' value={val} onChange={valChange} />
+                <input type='number' value={sval} onChange={svalChange} />
             </div>
+
+            <div className='AFilter'>
+                <label htmlFor='attackOperator'> Attack </label>
+                <select id='attackOperator' value={aop} onChange={aopChange}>
+                    <option value='<'> &#60; </option>
+                    <option value='='> = </option>
+                    <option value='>'> &#62; </option>
+                </select>
+                <input type='number' value={aval} onChange={avalChange} />
+            </div>
+
             <Table drgns={filteredDrgns} />
+
         </div>
     );
 }
