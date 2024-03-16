@@ -1,0 +1,18 @@
+.table-container {
+    overflow-x: auto;
+}
+
+.dragon-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.dragon-table th, .dragon-table td {
+    border: 1px solid black;
+    padding: 4px;
+    text-align: left;
+}
+
+.dragon-table th {
+    background-color: #f2f2f2;
+}
