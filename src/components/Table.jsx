@@ -18,7 +18,7 @@ export const Table = ({drgns}) => {
                 </tr>
                 <tr>
                     <th>Trainable</th>
-                    {drgns.map((dragon) => (<td>{dragon.trainable ? 'Yes' : 'No'}</td>))}
+                    {drgns.map((dragon) => (<td>{dragon.trainable}</td>))}
                 </tr>
                 <tr>
                     <th>Attack</th>
