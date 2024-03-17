@@ -1,1 +1,0 @@
-    fdrgns = drgns.filter(d => sfiltered.indludes(d.name) && afiltered.includes(d.name))

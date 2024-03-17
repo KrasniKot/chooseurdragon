@@ -4,19 +4,21 @@ import { Table } from './Table';
 import { drgns } from '../dragons';
 
 export const Body = () => {
-    let fdrgns = [];
 
-    const [sfiltered, setsFilteredDrgns] = useState(drgns);
-    const [afiltered, setaFilteredDrgns] = useState(drgns);
-    const [tfiltered, settFilteredDrgns] = useState(drgns);
-    const [arfiltered, setarFilteredDrgns] = useState(drgns);
-    const [ffiltered, setfFilteredDrgns] = useState(drgns);
-    const [shfiltered, setshFilteredDrgns] = useState(drgns);
-
+    // Dragon that meet the filter
+    const [sfiltered, setsFilteredDrgns] = useState(drgns); // Speed
+    const [afiltered, setaFilteredDrgns] = useState(drgns); // Attack
+    const [tfiltered, settFilteredDrgns] = useState(drgns); // Trainable
+    const [arfiltered, setarFilteredDrgns] = useState(drgns); // Armor
+    const [ffiltered, setfFilteredDrgns] = useState(drgns); // Fire Power
+    const [shfiltered, setshFilteredDrgns] = useState(drgns); // Shot Limit
+    const [vfiltered, setvFilteredDrgns] = useState(drgns); // venom
+    const [jfiltered, setjFilteredDrgns] = useState(drgns); // Jaw Strength
+    const [stfiltered, setstFilteredDrgns] = useState(drgns); // Stealth
 
     // Speed Filters
-    const [sop, setsOp] = useState('>');
-    const [sval, setsVal] = useState(0);
+    const [sop, setsOp] = useState();
+    const [sval, setsVal] = useState();
 
     const sopChange = (e) => {
         setsOp(e.target.value);
@@ -33,8 +35,6 @@ export const Body = () => {
             switch(operator) {
                 case '<':
                     return drgn.speed < value;
-                case '=':
-                    return drgn.speed === +value;
                 case '>':
                     return drgn.speed > value;
                 default:
@@ -47,8 +47,8 @@ export const Body = () => {
     }
 
     // Attack Filters
-    const [aop, setaOp] = useState('>')
-    const [aval, setaVal] = useState('0')
+    const [aop, setaOp] = useState();
+    const [aval, setaVal] = useState();
 
     const aopChange = (e) => {
         setaOp(e.target.value);
@@ -66,8 +66,6 @@ export const Body = () => {
             switch(op) {
                 case '<':
                     return drgn.atk < val;
-                case '=':
-                    return drgn.atk === +val;
                 case '>':
                     return drgn.atk > val;
                 default:
@@ -83,7 +81,7 @@ export const Body = () => {
 
     const topChange = (e) => {
         settOp(e.target.value);
-        filtertDrgns(e.target.value)
+        filtertDrgns(e.target.value);
     }
 
     const filtertDrgns = (op) => {
@@ -95,8 +93,8 @@ export const Body = () => {
     }
 
     // Armor Filters
-    const [arop, setarOp] = useState('>')
-    const [arval, setarVal] = useState('0')
+    const [arop, setarOp] = useState();
+    const [arval, setarVal] = useState();
 
     const aropChange = (e) => {
         setarOp(e.target.value);
@@ -125,8 +123,8 @@ export const Body = () => {
     }
 
     // Firepower Filters
-    const [fop, setfOp] = useState('>')
-    const [fval, setfVal] = useState('0')
+    const [fop, setfOp] = useState();
+    const [fval, setfVal] = useState();
 
     const opfChange = (e) => {
         setfOp(e.target.value);
@@ -155,8 +153,8 @@ export const Body = () => {
     }
 
     // Shot Limit Filters
-    const [shop, setshOp] = useState('>')
-    const [shval, setshVal] = useState('0')
+    const [shop, setshOp] = useState();
+    const [shval, setshVal] = useState();
     
     const opshChange = (e) => {
         setshOp(e.target.value);
@@ -173,8 +171,6 @@ export const Body = () => {
             switch(op) {
                 case '<':
                     return drgn.firepower < val;
-                case '=':
-                    return drgn.firepower === +val;
                 case '>':
                     return drgn.firepower > val;
                 default:
@@ -185,9 +181,97 @@ export const Body = () => {
         setshFilteredDrgns(filtered);
     }
 
-    const farrays = [sfiltered, afiltered, tfiltered, arfiltered, ffiltered, shfiltered];
-    fdrgns = drgns.filter(d => {return farrays.every(farray => {return farray.some(fd => { return d.name === fd.name})})});
+        // Venom Filters
+        const [vop, setvOp] = useState();
+        const [vval, setvVal] = useState();
+    
+        const vopChange = (e) => {
+            setvOp(e.target.value);
+            filtervDrgns(e.target.value, vval);
+    
+        }
+    
+        const vvalChange = (e) => {
+            setvVal(e.target.value);
+            filtervDrgns(vop, e.target.value);
+        }
+    
+        const filtervDrgns = (op, val) => {
+            const filtered = drgns.filter(drgn => {
+                switch(op) {
+                    case '<':
+                        return drgn.venom < val;
+                    case '>':
+                        return drgn.venom > val;
+                    default:
+                        return true;
+                }
+            });
+    
+            setvFilteredDrgns(filtered);
+        }
 
+        // Jaw Strength Filters
+        const [jop, setjOp] = useState();
+        const [jval, setjVal] = useState();
+    
+        const jopChange = (e) => {
+            setjOp(e.target.value);
+            filterjDrgns(e.target.value, jval);
+    
+        }
+    
+        const jvalChange = (e) => {
+            setjVal(e.target.value);
+            filterjDrgns(jop, e.target.value);
+        }
+    
+        const filterjDrgns = (op, val) => {
+            const filtered = drgns.filter(drgn => {
+                switch(op) {
+                    case '<':
+                        return drgn.venom < val;
+                    case '>':
+                        return drgn.venom > val;
+                    default:
+                        return true;
+                }
+            });
+    
+            setjFilteredDrgns(filtered);
+        }
+
+            // Jaw Strength Filters
+            const [stop, setstOp] = useState();
+            const [stval, setstVal] = useState();
+        
+            const stopChange = (e) => {
+                setstOp(e.target.value);
+                filterstDrgns(e.target.value, stval);
+        
+            }
+        
+            const stvalChange = (e) => {
+                setstVal(e.target.value);
+                filterstDrgns(stop, e.target.value);
+            }
+        
+            const filterstDrgns = (op, val) => {
+                const filtered = drgns.filter(drgn => {
+                    switch(op) {
+                        case '<':
+                            return drgn.venom < val;
+                        case '>':
+                            return drgn.venom > val;
+                        default:
+                            return true;
+                    }
+                });
+        
+                setstFilteredDrgns(filtered);
+            }
+    
+    let farrays = [sfiltered, afiltered, tfiltered, arfiltered, ffiltered, shfiltered, vfiltered, jfiltered, stfiltered];
 
     return ( 
         <div>
@@ -241,11 +325,37 @@ export const Body = () => {
                     <option value='<'> &#60; </option>
                     <option value='>'> &#62; </option>
                 </select>
-                <input type='number' value={fval} onChange={valshChange} />
+                <input type='number' value={shval} onChange={valshChange} />
             </div>
 
-            <Table drgns={fdrgns} />
+            <div className='VFilter'>
+                <label htmlFor='venomOperator'> Venom </label>
+                <select id='venomOperator' value={vop} onChange={vopChange}>
+                    <option value='<'> &#60; </option>
+                    <option value='>'> &#62; </option>
+                </select>
+                <input type='number' value={vval} onChange={vvalChange} />
+            </div>
 
+            <div className='JFilter'>
+                <label htmlFor='jawOperator'> Jaw Strength </label>
+                <select id='jawOperator' value={jop} onChange={jopChange}>
+                    <option value='<'> &#60; </option>
+                    <option value='>'> &#62; </option>
+                </select>
+                <input type='number' value={jval} onChange={jvalChange} />
+            </div>
+
+            <div className='STFilter'>
+                <label htmlFor='STOperator'> Stealth </label>
+                <select id='STOperator' value={stop} onChange={stopChange}>
+                    <option value='<'> &#60; </option>
+                    <option value='>'> &#62; </option>
+                </select>
+                <input type='number' value={stval} onChange={stvalChange} />
+            </div>
+
+            <Table drgns={drgns.filter(d => {return farrays.every(farray => {return farray.some(fd => { return d.name === fd.name})})})} />
         </div>
     );
 }

@@ -1,0 +1,8 @@
+.TFilter, .SFilter, .AFilter, .ARFilter, .FFilter, .SHFilter, .VFilter, .JFilter, .STFilter {
+    margin-bottom: 0.5em;
+}
+
+select {
+    margin-right: 0.2em;
+}
+
