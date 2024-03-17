@@ -18,18 +18,18 @@ class Drgn {
 
 // Creating the HTYD dragons
 export const drgns = [
-    new Drgn('Ala Acorazada'),
-    new Drgn('Alaeterna'),
-    new Drgn('Ala licántropo'),
-    new Drgn('Albañilero'),
-    new Drgn('Alacambiante'),
-    new Drgn('Artillería'),
-    new Drgn('Buffalord'),
-    new Drgn('Caldero'),
-    new Drgn('Canto Mortal'),
-    new Drgn('Cazaviento'),
-    new Drgn('Clavagarras'),
-    new Drgn('Centinela'),
+    new Drgn('Ala Acorazada', 'Misterio', 'Cuevas', 'Si', 12, 7, 50, 10, 4, 0, 11, 1),
+    new Drgn('Alaeterna', 'Misterio', 'Laderas de Montañas', 'No se sabe', 0, 0, 0, 0, 0, 0, 0, 0),
+    new Drgn('Ala licántropo', 'No se sabe', 'No se sabe', 'No se sabe', 0, 0, 0, 0, 0, 0, 0, 0),
+    new Drgn('Albañilero', 'Piedra', 'Cuevas/Selva', 'Si', 0, 0, 0, 6, 0, 0, 0, 0),
+    new Drgn('Alacambiante', 'Misterio', 'Bosque', 'No se sabe', 9, 14, 1, 12, 10, 0, 2, 20),
+    new Drgn('Buffalord', 'Misterio', 'Planicie', 'Si', 8, 6, 16, 12, 6, -20, 6, 4),
+    new Drgn('Caldero', 'Marejada', 'Océano', 'Si', 10, 6, 6, 14, 14, 10, 4, 10),
+    new Drgn('Canto Mortal', 'Misterio', 'Isla Melodía y las selvas del sur', 'Si', 16, 17, 16, 13, 8, 0, 10, 4),
+    new Drgn('Clavagarras', 'Afilada', 'No se sabe', 'Si', 10, 16, 8, 10, 8, 2, 3, 10),
+    new Drgn('Centinela', 'Piedra', 'Vanaheim', 'No', 12, 12, 40, 6, 8, 0, 10, 16),
+]
+/*
     new Drgn('Cerro Espinoso'),
     new Drgn('Cola Quemante'),
     new Drgn('Colmillo Afilado'),
@@ -95,3 +95,4 @@ export const drgns = [
     new Drgn('Trueno Tambor')    
 
 ]
+*/

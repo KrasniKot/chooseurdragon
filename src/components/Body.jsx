@@ -86,7 +86,7 @@ export const Body = () => {
 
     const filtertDrgns = (op) => {
         const filtered = drgns.filter(drgn => {
-            return drgn.trainable === true ? op === 'Yes' : drgn.trainable === false;
+            return drgn.trainable === op;
         });
     
         settFilteredDrgns(filtered);
@@ -278,7 +278,7 @@ export const Body = () => {
 
             <div className='TFilter'>
                 <select id='trainableOperator' value={top} onChange={topChange}>
-                    <option value='Yes'>Trainable</option>
+                    <option value='Si'>Trainable</option>
                     <option value='No'>No trainable</option>
                 </select>
             </div>
