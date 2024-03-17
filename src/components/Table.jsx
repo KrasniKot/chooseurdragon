@@ -52,7 +52,7 @@ export const Table = ({drgns}) => {
                     <th>Stealth</th>
                     {drgns.map((dragon) => (<td>{dragon.stealth}</td>))}
                 </tr>
-            </table>
+            </table>          
         </div>
     );
 }

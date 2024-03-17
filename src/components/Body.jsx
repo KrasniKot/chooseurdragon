@@ -1,33 +1,18 @@
 import React, {useState} from 'react';
 import { Table } from './Table';
 
-// Defining a dragon
-class Drgn {
-    constructor(name,type,habitat,trainable,atk,speed,armor,firepower,shotlimit,venom,jawstrength,stealth) {
-        this.name = name;
-        this.type = type;
-        this.habitat = habitat;
-        this.trainable = trainable;
-        this.atk = atk;
-        this.speed = speed;
-        this.armor = armor;
-        this.firepower = firepower;
-        this.shotlimit = shotlimit;
-        this.venom = venom;
-        this.jawstrength = jawstrength;
-        this.stealth = stealth;
-    }
-}
-
-// Creating the HTYD dragons
-const drgns = [
-    new Drgn('Armorwing','Mistery','Caves',true,12,7,50,10,4,0,11,1),
-    new Drgn('Bewilderbeast','Tidal','Oceans / Ice Nests',true,50,18,38,60,8,0,48,2),
-    new Drgn('Boneknapper','Mistery','Dragon graveyards',true,7,10,18,9,6,0,4,8)
-]
+import { drgns } from '../dragons';
 
 export const Body = () => {
-    const [filteredDrgns, setFilteredDrgns] = useState(drgns);
+    let fdrgns = [];
+
+    const [sfiltered, setsFilteredDrgns] = useState(drgns);
+    const [afiltered, setaFilteredDrgns] = useState(drgns);
+    const [tfiltered, settFilteredDrgns] = useState(drgns);
+    const [arfiltered, setarFilteredDrgns] = useState(drgns);
+    const [ffiltered, setfFilteredDrgns] = useState(drgns);
+    const [shfiltered, setshFilteredDrgns] = useState(drgns);
+
 
     // Speed Filters
     const [sop, setsOp] = useState('>');
@@ -44,7 +29,7 @@ export const Body = () => {
     }
 
     const filtersDrgns = (operator, value) => {
-        const filtered = filteredDrgns.filter(drgn => {
+        const sfiltered = drgns.filter(drgn => {
             switch(operator) {
                 case '<':
                     return drgn.speed < value;
@@ -57,7 +42,8 @@ export const Body = () => {
             }
         });
 
-        setFilteredDrgns(filtered);
+        // setFilteredDrgns(filtered);
+        setsFilteredDrgns(sfiltered);
     }
 
     // Attack Filters
@@ -76,7 +62,7 @@ export const Body = () => {
     }
 
     const filteraDrgns = (op, val) => {
-        const filtered = filteredDrgns.filter(drgn => {
+        const filtered = drgns.filter(drgn => {
             switch(op) {
                 case '<':
                     return drgn.atk < val;
@@ -89,33 +75,176 @@ export const Body = () => {
             }
         });
 
-        setFilteredDrgns(filtered);
+        setaFilteredDrgns(filtered);
     }
+
+    // Trainable Filters
+    const [top, settOp] = useState('Yes');
+
+    const topChange = (e) => {
+        settOp(e.target.value);
+        filtertDrgns(e.target.value)
+    }
+
+    const filtertDrgns = (op) => {
+        const filtered = drgns.filter(drgn => {
+            return drgn.trainable === true ? op === 'Yes' : drgn.trainable === false;
+        });
+    
+        settFilteredDrgns(filtered);
+    }
+
+    // Armor Filters
+    const [arop, setarOp] = useState('>')
+    const [arval, setarVal] = useState('0')
+
+    const aropChange = (e) => {
+        setarOp(e.target.value);
+        filterarDrgns(e.target.value, arval);
+
+    }
+
+    const arvalChange = (e) => {
+        setarVal(e.target.value);
+        filterarDrgns(aop, e.target.value);
+    }
+
+    const filterarDrgns = (op, val) => {
+        const filtered = drgns.filter(drgn => {
+            switch(op) {
+                case '<':
+                    return drgn.armor < val;
+                case '>':
+                    return drgn.armor > val;
+                default:
+                    return true;
+            }
+        });
+
+        setarFilteredDrgns(filtered);
+    }
+
+    // Firepower Filters
+    const [fop, setfOp] = useState('>')
+    const [fval, setfVal] = useState('0')
+
+    const opfChange = (e) => {
+        setfOp(e.target.value);
+        filterfDrgns(e.target.value, fval);
+
+    }
+
+    const valfChange = (e) => {
+        setfVal(e.target.value);
+        filterfDrgns(fop, e.target.value);
+    }
+
+    const filterfDrgns = (op, val) => {
+        const filtered = drgns.filter(drgn => {
+            switch(op) {
+                case '<':
+                    return drgn.firepower < val;
+                case '>':
+                    return drgn.firepower > val;
+                default:
+                    return true;
+            }
+        });
+
+        setfFilteredDrgns(filtered);
+    }
+
+    // Shot Limit Filters
+    const [shop, setshOp] = useState('>')
+    const [shval, setshVal] = useState('0')
+    
+    const opshChange = (e) => {
+        setshOp(e.target.value);
+        filtershDrgns(e.target.value, shval);
+    }
+    
+    const valshChange = (e) => {
+        setshVal(e.target.value);
+        filtershDrgns(shop, e.target.value);
+    }
+    
+    const filtershDrgns = (op, val) => {
+        const filtered = drgns.filter(drgn => {
+            switch(op) {
+                case '<':
+                    return drgn.firepower < val;
+                case '=':
+                    return drgn.firepower === +val;
+                case '>':
+                    return drgn.firepower > val;
+                default:
+                    return true;
+            }
+        });
+    
+        setshFilteredDrgns(filtered);
+    }
+
+    const farrays = [sfiltered, afiltered, tfiltered, arfiltered, ffiltered, shfiltered];
+    fdrgns = drgns.filter(d => {return farrays.every(farray => {return farray.some(fd => { return d.name === fd.name})})});
+
 
     return ( 
         <div>
 
-            <div className='SFilter'>
-                <label htmlFor='speedOperator'> Speed </label>
-                <select id='speedOperator' value={sop} onChange={sopChange}>
-                    <option value='<'> &#60; </option>
-                    <option value='='> = </option>
-                    <option value='>'> &#62; </option>
+            <div className='TFilter'>
+                <select id='trainableOperator' value={top} onChange={topChange}>
+                    <option value='Yes'>Trainable</option>
+                    <option value='No'>No trainable</option>
                 </select>
-                <input type='number' value={sval} onChange={svalChange} />
             </div>
 
             <div className='AFilter'>
                 <label htmlFor='attackOperator'> Attack </label>
                 <select id='attackOperator' value={aop} onChange={aopChange}>
                     <option value='<'> &#60; </option>
-                    <option value='='> = </option>
                     <option value='>'> &#62; </option>
                 </select>
                 <input type='number' value={aval} onChange={avalChange} />
             </div>
 
-            <Table drgns={filteredDrgns} />
+            <div className='SFilter'>
+                <label htmlFor='speedOperator'> Speed </label>
+                <select id='speedOperator' value={sop} onChange={sopChange}>
+                    <option value='<'> &#60; </option>
+                    <option value='>'> &#62; </option>
+                </select>
+                <input type='number' value={sval} onChange={svalChange} />
+            </div>
+
+            <div className='ARFilter'>
+                <label htmlFor='armorOperator'> Armor </label>
+                <select id='armorOperator' value={arop} onChange={aropChange}>
+                    <option value='<'> &#60; </option>
+                    <option value='>'> &#62; </option>
+                </select>
+                <input type='number' value={arval} onChange={arvalChange} />
+            </div>
+
+            <div className='FFilter'>
+                <label htmlFor='firepowerOperator'> Firepower </label>
+                <select id='firepowerOperator' value={fop} onChange={opfChange}>
+                    <option value='<'> &#60; </option>
+                    <option value='>'> &#62; </option>
+                </select>
+                <input type='number' value={fval} onChange={valfChange} />
+            </div>
+
+            <div className='SHFilter'>
+                <label htmlFor='shotlimitOperator'> Shot Limit </label>
+                <select id='shotlimitOperator' value={shop} onChange={opshChange}>
+                    <option value='<'> &#60; </option>
+                    <option value='>'> &#62; </option>
+                </select>
+                <input type='number' value={fval} onChange={valshChange} />
+            </div>
+
+            <Table drgns={fdrgns} />
 
         </div>
     );
