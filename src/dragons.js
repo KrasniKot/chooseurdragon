@@ -28,11 +28,9 @@ export const drgns = [
     new Drgn('Canto Mortal', 'Misterio', 'Isla Melodía y las selvas del sur', 'Si', 16, 17, 16, 13, 8, 0, 10, 4),
     new Drgn('Clavagarras', 'Afilada', 'No se sabe', 'Si', 10, 16, 8, 10, 8, 2, 3, 10),
     new Drgn('Centinela', 'Piedra', 'Vanaheim', 'No', 12, 12, 40, 6, 8, 0, 10, 16),
-]
-/*
-    new Drgn('Cerro Espinoso'),
-    new Drgn('Cola Quemante'),
-    new Drgn('Colmillo Afilado'),
+    new Drgn('Cerro Espinoso', 'Afilada', 'Bosques', 'Si', 0, 0, 0, 6, 0, 0, 0, 0),
+    new Drgn('Cola Quemante', 'Fogonero', 'Bosques', 'Si', 17, 15, 15, 20, 10, 0, 4, 10),
+    new Drgn('Colmillo Afilado', 'Piedra', 'Zonas templadas y bosques abiertos', 'Si', 9, 5, 17, 13, 6, 12, 8, 8),
     new Drgn('Cortaleña'),
     new Drgn('Cortalluvia'),
     new Drgn('Cortatormentas'),
@@ -95,4 +93,3 @@ export const drgns = [
     new Drgn('Trueno Tambor')    
 
 ]
-*/

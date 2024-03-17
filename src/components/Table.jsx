@@ -4,7 +4,7 @@ export const Table = ({drgns}) => {
     return ( 
         <div className="table-container">
             <table className="dragon-table">
-                <tr>
+                <tr className='gray'>
                     <th>Name</th>
                     {drgns.map((dragon) => (<td>{dragon.name}</td>))}
                 </tr>
@@ -12,7 +12,7 @@ export const Table = ({drgns}) => {
                     <th>Class</th>
                     {drgns.map((dragon) => (<td>{dragon.type}</td>))}
                 </tr>
-                <tr>
+                <tr className='gray'>
                     <th>Habitat</th>
                     {drgns.map((dragon) => (<td>{dragon.habitat}</td>))}
                 </tr>
@@ -20,7 +20,7 @@ export const Table = ({drgns}) => {
                     <th>Trainable</th>
                     {drgns.map((dragon) => (<td>{dragon.trainable}</td>))}
                 </tr>
-                <tr>
+                <tr className='gray'>
                     <th>Attack</th>
                     {drgns.map((dragon) => (<td>{dragon.atk}</td>))}
                 </tr>
@@ -28,7 +28,7 @@ export const Table = ({drgns}) => {
                     <th>Speed</th>
                     {drgns.map((dragon) => (<td>{dragon.speed}</td>))}
                 </tr>
-                <tr>
+                <tr className='gray'>
                     <th>Armor</th>
                     {drgns.map((dragon) => (<td>{dragon.armor}</td>))}
                 </tr>
@@ -36,7 +36,7 @@ export const Table = ({drgns}) => {
                     <th>Firepower</th>
                     {drgns.map((dragon) => (<td>{dragon.firepower}</td>))}
                 </tr>
-                <tr>
+                <tr className='gray'>
                     <th>Shot Limit</th>
                     {drgns.map((dragon) => (<td>{dragon.shotlimit}</td>))}
                 </tr>
@@ -44,7 +44,7 @@ export const Table = ({drgns}) => {
                     <th>Venom</th>
                     {drgns.map((dragon) => (<td>{dragon.venom}</td>))}
                 </tr>
-                <tr>
+                <tr className='gray'>
                     <th>Jaw Strength</th>
                     {drgns.map((dragon) => (<td>{dragon.jawstrength}</td>))}
                 </tr>

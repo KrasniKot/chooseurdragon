@@ -16,3 +16,7 @@
 .dragon-table th {
     background-color: #f2f2f2;
 }
+
+tr.gray {
+    background-color: #f2f2f2;
+  }
